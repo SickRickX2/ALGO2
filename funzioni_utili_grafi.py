@@ -63,4 +63,21 @@ G = [
     [0, 2, 8]   # Nodo 9: punta a 0, 2, 8
 ]
 
-print(Padri(4,G))
+#print(Padri(4,G))
+
+
+'''
+restituisce il cammino dal nodo radice dell'albero P al nodo u
+'''
+def CamminoR(u, P):
+    if P[u] == -1: return []
+    if P[u] == u: return [u]
+    return CamminoR(P[u], P) + [u]
+
+P = [
+    [4], [0], [1], [2], [4]
+]
+
+G = [
+    [1],[2],[3],[],[0,3]
+]
