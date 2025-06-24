@@ -325,6 +325,19 @@ def BFSpadri(x,G):
 #print(BFSpadri(2,G))
 
 
+def BFSdistanze(x,G):
+    D = [-1] * len(G)
+    D[x] = 0
+    coda = [x]
+    i = 0
+    while len(coda) >i:
+        u = coda[i]
+        i +=1
+        for y in G[u]:
+            if D[y] == -1:
+                D[y] = D[u] + 1
+                coda.append(y)
+    return D
 
-
-
+G= [[1,5],[2],[3],[4],[],[2,4],[2]]
+print(BFSdistanze(G))
