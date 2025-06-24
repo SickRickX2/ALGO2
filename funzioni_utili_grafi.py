@@ -166,3 +166,51 @@ def compFC(G):
             for x in E:
                 FC[x] = c
     return FC
+
+def sortTop(G):
+    n = len(G)
+    gradoEnt = [0] * n
+    for i in range(n):
+        for j in G[i]:
+            gradoEnt[j] += 1
+    sorgenti = [i for i in range(len(G)) if gradoEnt[i] == 0]
+    ### codice per trovare le sorgenti
+
+    ST = []
+    while sorgenti:
+        u = sorgenti.pop()
+        ST.append(u)
+        for v in G[u]:
+            gradoEnt[v] -= 1
+            if gradoEnt[v] == 0:
+                sorgenti.append(v)
+    if len(ST) == len(G): return ST
+    return []
+
+def sortTop1(G):
+
+    def DFSr(u, G, visitati, lista):
+        visitati[u] = 1
+        for v in G[u]:
+            if visitati[v] == 0:
+                DFSr(v,G,visitati,lista)
+        lista.append(u)
+
+
+    visitati = [0] * len(G)
+    lista = []
+    for u in range(len(G)):
+        if visitati[u] == 0:
+            DFSr(u, G, visitati, lista)
+    lista.reverse()
+    return lista
+
+#G = [[1,6,5],[2,6],[],[2,4,6],[5,6],[],[2,5]]
+
+
+#print(sortTop(G))
+#print(sortTop1(G))
+
+
+
+
