@@ -81,3 +81,30 @@ P = [
 G = [
     [1],[2],[3],[],[0,3]
 ]
+'''
+L'algoritmo produce una bi-colorazione se il grafo G è bicolorabile altrimenti restituisce una lista vuota
+'''
+def Colora(G):
+
+    def DFSr(x,G,Colore,c):
+        Colore[x] = c
+        for y in G[x]:
+            if Colore[x] == -1:
+                if not DFSr(y,G,Colore,1-c):
+                    return False
+            elif Colore[x] == Colore[y]:
+                return False
+        return True
+
+    Colore = [-1] * len(G)
+    if DFSr(0,G,Colore,0):
+        return Colore
+    return []
+G1 = [
+    [1],
+    [0]
+]
+print(f"Grafo G1 (percorso): {Colora(G1)}")
+
+
+
