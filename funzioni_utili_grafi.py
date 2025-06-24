@@ -268,7 +268,7 @@ def trova_ponti(G):
         for y in G[x]:
             if altezza[y] == -1:
                 #il nodo y non è stato ancora visitato
-            b = dfs(y,x,altezza,ponti)
+                b = dfs(y,x,altezza,ponti)
             if b > altezza[x]:
                 #altezza di x è minore di quella ritornata da y
                 #quindi (x,y) è un ponte
@@ -285,6 +285,44 @@ def trova_ponti(G):
     return ponti
 
 
+'''
+visita in ampiezza di BFS
+'''
+
+def BFS(x,G):
+    visitati = [0] * len(G)
+    visitati[x] = 1
+    coda = [x]
+    i = 0
+    while len(coda) > i:
+        u = coda[i]
+        i +=1
+        for y in G[u]:
+            if visitati[y] == 0:
+                visitati[y] = 1
+                coda.append(y)
+
+    return visitati
+'''
+padri BFS
+'''
+
+def BFSpadri(x,G):
+    P = [-1] * len(G)
+    P[x] = x
+    coda = [x]
+    i = 0
+    while len(coda)>i:
+        u =coda[i]
+        i += 1
+        for y in G[u]:
+            if P[y] == -1:
+                P[y] = u
+                coda.append(y)
+    return P
+
+#G= [[1,5],[2],[3],[4],[],[2,4],[2]]
+#print(BFSpadri(2,G))
 
 
 
