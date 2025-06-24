@@ -256,5 +256,37 @@ def cicloD1(G):
     return False
 
 
+def trova_ponti(G):
+    def dfs(x,padre,altezza,ponti):
+        # assegna l'altezza del nodo corrente
+        if padre == -1:
+            altezza[x] = 0
+        else:
+            altezza[x] = altezza[padre] +1
+        #minima altezza raggiungibile dal sottoalbero
+        min_raggiungibile = altezza[x]
+        for y in G[x]:
+            if altezza[y] == -1:
+                #il nodo y non è stato ancora visitato
+            b = dfs(y,x,altezza,ponti)
+            if b > altezza[x]:
+                #altezza di x è minore di quella ritornata da y
+                #quindi (x,y) è un ponte
+                ponti.append(x,y)
+                min_raggiungibile = min(min_raggiungibile,b)
+            elif y != padre:
+                #y già visitato e (x,y) è un arco all'indietro
+                min_raggiungibile = min(min_raggiungibile,altezza[y])
+            return min_raggiungibile
+    altezza = [-1] * len(G)
+    ponti = []
+    # inizia la DFS dal nodo 0
+    dfs(0, -1, altezza, ponti)
+    return ponti
+
+
+
+
+
 
 
