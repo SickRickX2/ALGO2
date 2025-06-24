@@ -212,5 +212,49 @@ def sortTop1(G):
 #print(sortTop1(G))
 
 
+'''
+trovare cicli in:
+1) grafi non diretti
+2) grafi diretti
+'''
+
+def ciclo(u, G):
+    visitati = [0] * len(G)
+    return DFSr (u,u, G, visitati)
+def DFSr(u,padre,G,visitati):
+    visitati[u] = 1
+    for v in G[u]:
+        if visitati[v] == 1:
+            if v != padre: return True
+
+        else:
+            if DFSr(v,u,G,visitati):
+                return True
+    return False
+
+def DFSr(u,G,visitati):
+    visitati[u] =1
+    for v in G[u]:
+        if visitati[v] == 1:
+                return True
+        if visitati[v] == 0:
+            if DFSr(v,G,visitati):
+                return True
+    visitati[u] = 2
+    return False
+
+def cicloD(u,G):
+    visitati = [0] * len(G)
+    return DFSr(u,G,visitati)
+
+def cicloD1(G):
+    visitati = [0] * len(G)
+    for u in range(len(G)):
+        if visitati[u] == 0:
+            if DFSr(u,G,visitati):
+                return True
+    return False
+
+
 
 
