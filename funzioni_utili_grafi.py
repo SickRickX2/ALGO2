@@ -89,10 +89,10 @@ def Colora(G):
     def DFSr(x,G,Colore,c):
         Colore[x] = c
         for y in G[x]:
-            if Colore[x] == -1:
+            if Colore[y] == -1:
                 if not DFSr(y,G,Colore,1-c):
                     return False
-            elif Colore[x] == Colore[y]:
+            elif Colore[y] == Colore[x]:
                 return False
         return True
 
