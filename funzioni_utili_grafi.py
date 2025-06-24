@@ -20,7 +20,7 @@ def DFS(u,G):
     return [x for x in range(n) if visitati[x]]
 
 
-G = [
+'''G = [
     [1],
     [2,3,5],
     [4],
@@ -28,7 +28,7 @@ G = [
     [6],
     [],
     [2]
-]
+]'''
 #print(DFS(6,G))
 '''
 Una visita DFS crea un albero DFS che può essere memorizzato
@@ -111,7 +111,7 @@ def Componenti(G):
             DFSr(x, G, componenti,c)
     return componenti
 
-G = [
+'''G = [
     [2,6],
     [7,8],
     [0,6,16,10],
@@ -133,5 +133,36 @@ G = [
     [3,11]
 
 ]
-print(Componenti(G))
+#print(Componenti(G))
+'''
+def Trasposto(G):
+    GT = [[]for _ in range(len(G))]
+    for x in range(len(G)):
+        for y in G[x]:
+            GT[y].append(x)
 
+    return GT
+
+
+
+def FConnessa(x,G):
+    visitati1 = DFS(x,G)
+    G1 = Trasposto(G)
+    visitati2 = DFS(x,G1)
+    componente = []
+    for i in range(len(G)):
+        if visitati1[i] == visitati2[i] == 1:
+            componente.append(i)
+    return componente
+
+
+def compFC(G):
+    FC = [0] * len(G)
+    c = 0
+    for i in range(len(G)):
+        if FC[i] == 0:
+            E = FConnessa(i,G)
+            c += 1
+            for x in E:
+                FC[x] = c
+    return FC
