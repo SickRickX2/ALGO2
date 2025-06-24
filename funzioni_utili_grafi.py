@@ -74,13 +74,6 @@ def CamminoR(u, P):
     if P[u] == u: return [u]
     return CamminoR(P[u], P) + [u]
 
-P = [
-    [4], [0], [1], [2], [4]
-]
-
-G = [
-    [1],[2],[3],[],[0,3]
-]
 '''
 L'algoritmo produce una bi-colorazione se il grafo G è bicolorabile altrimenti restituisce una lista vuota
 '''
@@ -100,11 +93,45 @@ def Colora(G):
     if DFSr(0,G,Colore,0):
         return Colore
     return []
-G1 = [
-    [1],
-    [0]
+
+
+def Componenti(G):
+    def DFSr(x,G,componenti, c):
+        componenti[x] = c
+        for y in G[x]:
+            if componenti[y] == 0:
+                DFSr(y, G, componenti,c)
+
+
+    componenti = [0] * len(G)
+    c = 0
+    for x in range(len(G)):
+        if componenti[x] == 0:
+            c += 1
+            DFSr(x, G, componenti,c)
+    return componenti
+
+G = [
+    [2,6],
+    [7,8],
+    [0,6,16,10],
+    [11,18],
+    [],
+    [12,14,17],
+    [2,0],
+    [1,15],
+    [1,13],
+    [15,13],
+    [2,16],
+    [3,18],
+    [5,14,17],
+    [8,9],
+    [12,17,5],
+    [7,9],
+    [10,2],
+    [5,14,12],
+    [3,11]
+
 ]
-print(f"Grafo G1 (percorso): {Colora(G1)}")
-
-
+print(Componenti(G))
 
