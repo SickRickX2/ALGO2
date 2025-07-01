@@ -29,3 +29,4 @@ def componenti(G):
 
 G = [[],[2,3],[1,3],[1,2],[5],[4]]
 print(componenti(G))
+
