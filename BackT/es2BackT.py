@@ -19,6 +19,4 @@ def es2(n, sol = [], ca = 0,cb = 0):
         es2(n,sol,ca,cb+1)
         sol.pop()
 
-
-
 es2(4)
