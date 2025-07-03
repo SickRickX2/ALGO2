@@ -11,4 +11,5 @@ def es(n,k):
                 T[i][j] = T[i-1][j-1]+T[i][j-1]*i
     return T[-1][-1]
 
+
 print(es(4,2))
