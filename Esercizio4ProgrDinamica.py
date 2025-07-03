@@ -13,9 +13,6 @@ def ex4(M):
                 matrice_max = T[i][j]
     return matrice_max
 
-
-
-
 M = [[1,0,1,1,1],
      [1,1,1,1,1],
      [1,1,1,0,1],
